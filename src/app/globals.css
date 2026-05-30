@@ -51,24 +51,31 @@
   --nav-h: 68px;
 }
 
-*, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-h) + 24px); }
-body {
-  margin: 0;
-  font-family: var(--font-sans);
-  color: var(--color-ink-900);
-  background: #fff;
-  font-size: 17px;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
+/* Base reset — placed in @layer base so Tailwind utility classes
+   (text-white, text-slate-600, …) override these element defaults.
+   Unlayered rules would otherwise beat every @layer utility, which is
+   why `a { color: indigo }` was hiding white button text and forcing
+   all nav links indigo. */
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-h) + 24px); }
+  body {
+    margin: 0;
+    font-family: var(--font-sans);
+    color: var(--color-ink-900);
+    background: #fff;
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, h4 { margin: 0; font-family: var(--font-display); letter-spacing: -0.02em; line-height: 1.12; font-weight: 600; }
+  p { margin: 0; }
+  a { color: var(--color-indigo); text-decoration: none; }
+  img { max-width: 100%; display: block; }
+  ::selection { background: var(--color-indigo-200); color: var(--color-ink-900); }
+  :focus-visible { outline: none; box-shadow: 0 0 0 3px var(--color-indigo-200); border-radius: 4px; }
 }
-h1, h2, h3, h4 { margin: 0; font-family: var(--font-display); letter-spacing: -0.02em; line-height: 1.12; font-weight: 600; }
-p { margin: 0; }
-a { color: var(--color-indigo); text-decoration: none; }
-img { max-width: 100%; display: block; }
-::selection { background: var(--color-indigo-200); color: var(--color-ink-900); }
-:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--color-indigo-200); border-radius: 4px; }
 
 /* ============================================================ WORK GRID */
 .work-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 56px; }

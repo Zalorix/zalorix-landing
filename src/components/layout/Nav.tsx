@@ -10,6 +10,7 @@ import { MobileDrawer } from '@/components/layout/MobileDrawer'
 export function Nav() {
   const [scrolled, setScrolled] = useState(false)
   const [drawerOpen, setDrawerOpen] = useState(false)
+  const [activeId, setActiveId] = useState('')
   const closeDrawer = useCallback(() => setDrawerOpen(false), [])
 
   useEffect(() => {
@@ -20,6 +21,29 @@ export function Nav() {
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  // Scroll-spy: highlight the nav link for the section currently in view.
+  // Only the in-view section's link is indigo; the rest stay slate.
+  // On routes without these sections (e.g. /work/*), nothing matches and
+  // every link stays slate, which is correct.
+  useEffect(() => {
+    const sections = navLinks
+      .map((l) => document.getElementById(l.href.slice(1)))
+      .filter((el): el is HTMLElement => el !== null)
+    if (!('IntersectionObserver' in window) || sections.length === 0) return
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        const inView = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)
+        if (inView[0]) setActiveId(inView[0].target.id)
+      },
+      { rootMargin: '-45% 0px -50% 0px', threshold: 0 },
+    )
+    sections.forEach((s) => io.observe(s))
+    return () => io.disconnect()
   }, [])
 
   return (
@@ -50,15 +74,22 @@ export function Nav() {
 
           {/* Desktop nav links — hidden at ≤920px, shown above */}
           <div className="max-[920px]:hidden flex gap-[2px]">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-[15px] font-medium text-slate-600 px-[14px] py-2 rounded-sm transition-[color,background] duration-150 hover:text-ink-900 hover:bg-slate-100"
-              >
-                {link.label}
-              </a>
-            ))}
+            {navLinks.map((link) => {
+              const active = activeId !== '' && link.href === `#${activeId}`
+              return (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  aria-current={active ? 'true' : undefined}
+                  className={[
+                    'text-[15px] font-medium px-[14px] py-2 rounded-sm transition-[color,background] duration-150 hover:bg-slate-100',
+                    active ? 'text-indigo' : 'text-slate-600 hover:text-ink-900',
+                  ].join(' ')}
+                >
+                  {link.label}
+                </a>
+              )
+            })}
           </div>
 
           {/* CTA area */}
