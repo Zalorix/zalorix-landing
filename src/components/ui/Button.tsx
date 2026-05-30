@@ -45,8 +45,8 @@ export function Button({
   const cls = `${base} ${sizes[size]} ${variants[variant]} ${block ? 'w-full' : ''} ${className}`.trim()
   if (href) {
     const internal = href.startsWith('/')
-    if (internal) return <Link href={href} className={cls}>{children}</Link>
-    return <a href={href} className={cls}>{children}</a>
+    if (internal) return <Link href={href} onClick={onClick} className={cls}>{children}</Link>
+    return <a href={href} onClick={onClick} className={cls}>{children}</a>
   }
   return <button type={type} onClick={onClick} className={cls}>{children}</button>
 }

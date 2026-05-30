@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { Menu } from 'lucide-react'
 import { ZMark } from '@/components/ui/ZMark'
 import { Button } from '@/components/ui/Button'
@@ -10,6 +10,7 @@ import { MobileDrawer } from '@/components/layout/MobileDrawer'
 export function Nav() {
   const [scrolled, setScrolled] = useState(false)
   const [drawerOpen, setDrawerOpen] = useState(false)
+  const closeDrawer = useCallback(() => setDrawerOpen(false), [])
 
   useEffect(() => {
     function onScroll() {
@@ -81,7 +82,7 @@ export function Nav() {
         </div>
       </nav>
 
-      <MobileDrawer open={drawerOpen} onClose={() => setDrawerOpen(false)} />
+      <MobileDrawer open={drawerOpen} onClose={closeDrawer} />
     </>
   )
 }
