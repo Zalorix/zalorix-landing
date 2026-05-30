@@ -19,12 +19,6 @@ export function Contact() {
   const emailRef = useRef<HTMLInputElement>(null)
   const messageRef = useRef<HTMLTextAreaElement>(null)
 
-  function revalidateField(field: keyof ContactErrors) {
-    if (!errors[field]) return
-    const next = validateContact({ name, email, message })
-    setErrors((prev) => ({ ...prev, [field]: next[field] }))
-  }
-
   function handleBlur(field: keyof ContactErrors) {
     const next = validateContact({ name, email, message })
     if (next[field]) {
