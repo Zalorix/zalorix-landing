@@ -13,13 +13,14 @@ export function Reveal({
   delay?: number
 }) {
   const ref = useRef<HTMLElement>(null)
-  const [shown, setShown] = useState(false)
+  const [shown, setShown] = useState(
+    () => typeof window !== 'undefined' && !('IntersectionObserver' in window)
+  )
 
   useEffect(() => {
     const el = ref.current
     if (!el) return
     if (!('IntersectionObserver' in window)) {
-      setShown(true)
       return
     }
     const io = new IntersectionObserver(

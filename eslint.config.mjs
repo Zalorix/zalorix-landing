@@ -13,6 +13,12 @@ const eslintConfig = defineConfig([
     "build/**",
     "next-env.d.ts",
   ]),
+  // Disable cosmetic rules that catch no bugs.
+  {
+    rules: {
+      'react/no-unescaped-entities': 'off',
+    },
+  },
 ]);
 
 export default eslintConfig;

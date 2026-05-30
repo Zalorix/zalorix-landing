@@ -16,7 +16,7 @@
 
 import type { ReactNode } from 'react'
 import Link from 'next/link'
-import { ArrowRight, Info, ChevronRight, Sparkles } from 'lucide-react'
+import { ArrowRight, Info, ChevronRight } from 'lucide-react'
 import { Wrap } from '@/components/ui/Section'
 import { Reveal } from '@/components/ui/Reveal'
 import { ZMark } from '@/components/ui/ZMark'
@@ -123,6 +123,16 @@ export function CaseLayout({
 
         {/* breadcrumb + title */}
         <Wrap className="relative">
+          {/* breadcrumb: "Work / <Name>" — hidden on mobile ≤820px (matches reference nav__crumb) */}
+          {breadcrumb && (
+            <div className="mb-[28px] hidden items-center gap-[8px] min-[821px]:flex text-[14px] font-medium text-slate-400">
+              <Link href="/#work" className="text-slate-600 transition-colors hover:text-ink-900">
+                Work
+              </Link>
+              <ChevronRight className="h-[15px] w-[15px] text-slate-300" strokeWidth={1.75} />
+              <span className="text-ink-900">{breadcrumb}</span>
+            </div>
+          )}
           <Reveal className="max-w-[760px]">
             {/* pills */}
             {pills.length > 0 && (
