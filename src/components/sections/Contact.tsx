@@ -2,49 +2,92 @@
 
 import { useRef, useState } from 'react'
 import { Mail, Calendar, Clock, AlertCircle, ArrowRight, Check } from 'lucide-react'
+import { parsePhoneNumberFromString, type CountryCode } from 'libphonenumber-js'
 import { Section, Wrap } from '@/components/ui/Section'
 import { Reveal } from '@/components/ui/Reveal'
 import { Button } from '@/components/ui/Button'
 import { Eyebrow } from '@/components/ui/Eyebrow'
+import { PhoneField } from '@/components/ui/PhoneField'
+import { Select } from '@/components/ui/Select'
 import { validateContact, type ContactErrors } from '@/lib/validateContact'
 
+type FieldKey = 'firstName' | 'lastName' | 'email' | 'message'
+
 export function Contact() {
-  const [name, setName] = useState('')
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
   const [email, setEmail] = useState('')
+  const [phone, setPhone] = useState('')
+  const [phoneCountry, setPhoneCountry] = useState<CountryCode>('PH')
+  const [ptype, setPtype] = useState('New website')
+  const [budget, setBudget] = useState('Not sure yet')
   const [message, setMessage] = useState('')
   const [errors, setErrors] = useState<ContactErrors>({})
   const [submitted, setSubmitted] = useState(false)
 
-  const nameRef = useRef<HTMLInputElement>(null)
+  const firstNameRef = useRef<HTMLInputElement>(null)
+  const lastNameRef = useRef<HTMLInputElement>(null)
   const emailRef = useRef<HTMLInputElement>(null)
+  const phoneRef = useRef<HTMLInputElement>(null)
   const messageRef = useRef<HTMLTextAreaElement>(null)
 
-  function handleBlur(field: keyof ContactErrors) {
-    const next = validateContact({ name, email, message })
+  const text = () => ({ firstName, lastName, email, message })
+
+  // E.164 form of the entered phone (empty when blank or not yet parseable).
+  const phoneE164 = phone.trim()
+    ? parsePhoneNumberFromString(phone, phoneCountry)?.number ?? ''
+    : ''
+
+  function handleBlur(field: FieldKey) {
+    const next = validateContact(text())
     if (next[field]) {
       setErrors((prev) => ({ ...prev, [field]: true }))
     }
   }
 
-  function handleInput(field: keyof ContactErrors, value: string) {
-    if (field === 'name') setName(value)
+  function handleInput(field: FieldKey, value: string) {
+    if (field === 'firstName') setFirstName(value)
+    else if (field === 'lastName') setLastName(value)
     else if (field === 'email') setEmail(value)
     else if (field === 'message') setMessage(value)
 
     if (errors[field]) {
-      const updated = { ...{ name, email, message }, [field]: value }
-      const next = validateContact(updated)
+      const next = validateContact({ ...text(), [field]: value })
       setErrors((prev) => ({ ...prev, [field]: next[field] }))
     }
   }
 
+  // Phone has its own handlers since validity depends on both number and country.
+  function revalidatePhone(nextPhone: string, nextCountry: CountryCode) {
+    if (!errors.phone) return
+    const next = validateContact({ ...text(), phone: nextPhone, phoneCountry: nextCountry })
+    setErrors((prev) => ({ ...prev, phone: next.phone }))
+  }
+
+  function handlePhoneNumber(value: string) {
+    setPhone(value)
+    revalidatePhone(value, phoneCountry)
+  }
+
+  function handlePhoneCountry(c: CountryCode) {
+    setPhoneCountry(c)
+    revalidatePhone(phone, c)
+  }
+
+  function handlePhoneBlur() {
+    const next = validateContact({ ...text(), phone, phoneCountry })
+    setErrors((prev) => ({ ...prev, phone: next.phone }))
+  }
+
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    const errs = validateContact({ name, email, message })
+    const errs = validateContact({ ...text(), phone, phoneCountry })
     setErrors(errs)
     if (Object.keys(errs).length > 0) {
-      if (errs.name && nameRef.current) { nameRef.current.focus(); return }
+      if (errs.firstName && firstNameRef.current) { firstNameRef.current.focus(); return }
+      if (errs.lastName && lastNameRef.current) { lastNameRef.current.focus(); return }
       if (errs.email && emailRef.current) { emailRef.current.focus(); return }
+      if (errs.phone && phoneRef.current) { phoneRef.current.focus(); return }
       if (errs.message && messageRef.current) { messageRef.current.focus(); return }
       return
     }
@@ -163,42 +206,63 @@ export function Contact() {
                   .form-row: display:grid; grid-template-columns:1fr 1fr; gap:20px
                   @media(max-width:520px): grid-template-columns:1fr; gap:0
                 */}
-                <div className="grid [grid-template-columns:1fr_1fr] gap-[20px] max-[520px]:[grid-template-columns:1fr] max-[520px]:gap-0">
-                  {/* Name field */}
-                  {/*
-                    .field: display:grid; gap:8px; margin-bottom:20px
-                    .field label: font-size:14px; font-weight:500; color:var(--slate-600)
-                    .field label .req: color:var(--indigo)
-                    .field.invalid .input: border-color:var(--error)
-                    .field .err: font-size:13px; color:var(--error); display:none; align-items:center; gap:5px
-                    .field.invalid .err: display:flex
-                  */}
-                  <div className={`grid gap-[8px] mb-[20px]${errors.name ? ' [&_.field-err]:flex [&_.field-input]:border-error' : ''}`}>
-                    <label htmlFor="name" className="text-[14px] font-medium text-slate-600">
-                      Name <span className="text-indigo">*</span>
+                {/* First + Last name row */}
+                <div className="grid items-start [grid-template-columns:1fr_1fr] gap-[20px] max-[520px]:[grid-template-columns:1fr] max-[520px]:gap-0">
+                  {/* First name */}
+                  <div className="grid gap-[8px] mb-[20px]">
+                    <label htmlFor="firstName" className="text-[14px] font-medium text-slate-600">
+                      First name <span className="text-indigo">*</span>
                     </label>
                     <input
-                      ref={nameRef}
-                      id="name"
-                      name="name"
+                      ref={firstNameRef}
+                      id="firstName"
+                      name="firstName"
                       type="text"
-                      placeholder="Jane Doe"
+                      placeholder="Jane"
+                      autoComplete="given-name"
                       required
-                      value={name}
-                      onChange={(e) => handleInput('name', e.target.value)}
-                      onBlur={() => handleBlur('name')}
-                      aria-invalid={errors.name ? 'true' : 'false'}
-                      className={`field-input font-[inherit] text-[16px] px-[14px] py-[12px] border rounded-[8px] bg-white text-ink-900 transition-[0.15s] w-full placeholder:text-slate-400 focus:outline-none focus:border-indigo focus:shadow-[0_0_0_3px_var(--color-indigo-200)]${errors.name ? ' border-error' : ' border-slate-300'}`}
+                      value={firstName}
+                      onChange={(e) => handleInput('firstName', e.target.value)}
+                      onBlur={() => handleBlur('firstName')}
+                      aria-invalid={errors.firstName ? 'true' : 'false'}
+                      className={`font-[inherit] text-[16px] px-[14px] py-[12px] border rounded-[8px] bg-white text-ink-900 transition-[0.15s] w-full placeholder:text-slate-400 focus:outline-none focus:border-indigo focus:shadow-[0_0_0_3px_var(--color-indigo-200)]${errors.firstName ? ' border-error' : ' border-slate-300'}`}
                     />
-                    <span className={`field-err text-[13px] text-error ${errors.name ? 'flex' : 'hidden'} items-center gap-[5px]`}>
-                      <AlertCircle className="w-[14px] h-[14px]" strokeWidth={1.75} /> Please enter your name
+                    <span className={`text-[13px] text-error ${errors.firstName ? 'flex' : 'hidden'} items-center gap-[5px]`}>
+                      <AlertCircle className="w-[14px] h-[14px]" strokeWidth={1.75} /> Please enter your first name
                     </span>
                   </div>
 
-                  {/* Email field */}
-                  <div className={`grid gap-[8px] mb-[20px]${errors.email ? ' [&_.field-err]:flex [&_.field-input]:border-error' : ''}`}>
+                  {/* Last name */}
+                  <div className="grid gap-[8px] mb-[20px]">
+                    <label htmlFor="lastName" className="text-[14px] font-medium text-slate-600">
+                      Last name <span className="text-indigo">*</span>
+                    </label>
+                    <input
+                      ref={lastNameRef}
+                      id="lastName"
+                      name="lastName"
+                      type="text"
+                      placeholder="Doe"
+                      autoComplete="family-name"
+                      required
+                      value={lastName}
+                      onChange={(e) => handleInput('lastName', e.target.value)}
+                      onBlur={() => handleBlur('lastName')}
+                      aria-invalid={errors.lastName ? 'true' : 'false'}
+                      className={`font-[inherit] text-[16px] px-[14px] py-[12px] border rounded-[8px] bg-white text-ink-900 transition-[0.15s] w-full placeholder:text-slate-400 focus:outline-none focus:border-indigo focus:shadow-[0_0_0_3px_var(--color-indigo-200)]${errors.lastName ? ' border-error' : ' border-slate-300'}`}
+                    />
+                    <span className={`text-[13px] text-error ${errors.lastName ? 'flex' : 'hidden'} items-center gap-[5px]`}>
+                      <AlertCircle className="w-[14px] h-[14px]" strokeWidth={1.75} /> Please enter your last name
+                    </span>
+                  </div>
+                </div>
+
+                {/* Email + Phone row */}
+                <div className="grid items-start [grid-template-columns:1fr_1fr] gap-[20px] max-[520px]:[grid-template-columns:1fr] max-[520px]:gap-0">
+                  {/* Email */}
+                  <div className="grid gap-[8px] mb-[20px]">
                     <label htmlFor="email" className="text-[14px] font-medium text-slate-600">
-                      Email <span className="text-indigo">*</span>
+                      Email <span className="text-slate-400 font-normal">(optional)</span>
                     </label>
                     <input
                       ref={emailRef}
@@ -206,21 +270,42 @@ export function Contact() {
                       name="email"
                       type="email"
                       placeholder="you@company.com"
-                      required
+                      autoComplete="email"
                       value={email}
                       onChange={(e) => handleInput('email', e.target.value)}
                       onBlur={() => handleBlur('email')}
                       aria-invalid={errors.email ? 'true' : 'false'}
-                      className={`field-input font-[inherit] text-[16px] px-[14px] py-[12px] border rounded-[8px] bg-white text-ink-900 transition-[0.15s] w-full placeholder:text-slate-400 focus:outline-none focus:border-indigo focus:shadow-[0_0_0_3px_var(--color-indigo-200)]${errors.email ? ' border-error' : ' border-slate-300'}`}
+                      className={`font-[inherit] text-[16px] px-[14px] py-[12px] border rounded-[8px] bg-white text-ink-900 transition-[0.15s] w-full placeholder:text-slate-400 focus:outline-none focus:border-indigo focus:shadow-[0_0_0_3px_var(--color-indigo-200)]${errors.email ? ' border-error' : ' border-slate-300'}`}
                     />
-                    <span className={`field-err text-[13px] text-error ${errors.email ? 'flex' : 'hidden'} items-center gap-[5px]`}>
+                    <span className={`text-[13px] text-error ${errors.email ? 'flex' : 'hidden'} items-center gap-[5px]`}>
                       <AlertCircle className="w-[14px] h-[14px]" strokeWidth={1.75} /> Enter a valid email
+                    </span>
+                  </div>
+
+                  {/* Phone — optional, validated + stored as E.164 */}
+                  <div className="grid gap-[8px] mb-[20px]">
+                    <label htmlFor="phone" className="text-[14px] font-medium text-slate-600">
+                      Phone <span className="text-indigo">*</span>
+                    </label>
+                    <PhoneField
+                      id="phone"
+                      inputRef={phoneRef}
+                      country={phoneCountry}
+                      number={phone}
+                      onCountryChange={handlePhoneCountry}
+                      onNumberChange={handlePhoneNumber}
+                      onBlur={handlePhoneBlur}
+                      invalid={!!errors.phone}
+                    />
+                    <input type="hidden" name="phone" value={phoneE164} />
+                    <span className={`text-[13px] text-error ${errors.phone ? 'flex' : 'hidden'} items-center gap-[5px]`}>
+                      <AlertCircle className="w-[14px] h-[14px]" strokeWidth={1.75} /> Enter a valid phone number
                     </span>
                   </div>
                 </div>
 
                 {/* Company + Project type row */}
-                <div className="grid [grid-template-columns:1fr_1fr] gap-[20px] max-[520px]:[grid-template-columns:1fr] max-[520px]:gap-0">
+                <div className="grid items-start [grid-template-columns:1fr_1fr] gap-[20px] max-[520px]:[grid-template-columns:1fr] max-[520px]:gap-0">
                   {/* Company — no validation */}
                   <div className="grid gap-[8px] mb-[20px]">
                     <label htmlFor="company" className="text-[14px] font-medium text-slate-600">
@@ -231,54 +316,57 @@ export function Contact() {
                       name="company"
                       type="text"
                       placeholder="Acme Inc."
+                      autoComplete="organization"
                       className="font-[inherit] text-[16px] px-[14px] py-[12px] border border-slate-300 rounded-[8px] bg-white text-ink-900 transition-[0.15s] w-full placeholder:text-slate-400 focus:outline-none focus:border-indigo focus:shadow-[0_0_0_3px_var(--color-indigo-200)]"
                     />
                   </div>
 
-                  {/* Project type select */}
+                  {/* Project type — HeroUI Select */}
                   <div className="grid gap-[8px] mb-[20px]">
                     <label htmlFor="ptype" className="text-[14px] font-medium text-slate-600">
                       Project type
                     </label>
-                    {/*
-                      .select: appearance:none; background-image: chevron SVG;
-                        background-repeat:no-repeat; background-position:right 12px center;
-                        padding-right:40px; cursor:pointer
-                    */}
-                    <select
+                    <Select
                       id="ptype"
                       name="ptype"
-                      className="font-[inherit] text-[16px] px-[14px] py-[12px] border border-slate-300 rounded-[8px] bg-white text-ink-900 transition-[0.15s] w-full focus:outline-none focus:border-indigo focus:shadow-[0_0_0_3px_var(--color-indigo-200)] appearance-none cursor-pointer pr-[40px] [background-image:url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%2294A3B8%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22m6%209%206%206%206-6%22%2F%3E%3C%2Fsvg%3E')] [background-repeat:no-repeat] [background-position:right_12px_center]"
-                    >
-                      <option>New website</option>
-                      <option>Web app</option>
-                      <option>Redesign</option>
-                      <option>Other</option>
-                    </select>
+                      ariaLabel="Project type"
+                      value={ptype}
+                      onChange={setPtype}
+                      options={[
+                        { value: 'New website' },
+                        { value: 'Web app' },
+                        { value: 'Redesign' },
+                        { value: 'Other' },
+                      ]}
+                    />
                   </div>
                 </div>
 
-                {/* Budget range — full width */}
+                {/* Budget range — full width, HeroUI Select */}
                 <div className="grid gap-[8px] mb-[20px]">
                   <label htmlFor="budget" className="text-[14px] font-medium text-slate-600">
                     Budget range{' '}
                     <span className="text-slate-400 font-normal">(optional)</span>
                   </label>
-                  <select
+                  <Select
                     id="budget"
                     name="budget"
-                    className="font-[inherit] text-[16px] px-[14px] py-[12px] border border-slate-300 rounded-[8px] bg-white text-ink-900 transition-[0.15s] w-full focus:outline-none focus:border-indigo focus:shadow-[0_0_0_3px_var(--color-indigo-200)] appearance-none cursor-pointer pr-[40px] [background-image:url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%2294A3B8%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22m6%209%206%206%206-6%22%2F%3E%3C%2Fsvg%3E')] [background-repeat:no-repeat] [background-position:right_12px_center]"
-                  >
-                    <option>Not sure yet</option>
-                    <option>Launch — from ₱15,000</option>
-                    <option>Growth — from ₱35,000</option>
-                    <option>E-commerce — from ₱60,000</option>
-                    <option>Custom — ₱120,000+</option>
-                  </select>
+                    ariaLabel="Budget range"
+                    value={budget}
+                    onChange={setBudget}
+                    options={[
+                      { value: 'Not sure yet' },
+                      { value: 'Launch — from ₱15,000' },
+                      { value: 'Business — from ₱25,000' },
+                      { value: 'Growth — from ₱35,000' },
+                      { value: 'E-commerce — from ₱60,000' },
+                      { value: 'Custom — ₱120,000+' },
+                    ]}
+                  />
                 </div>
 
                 {/* Project details — required textarea */}
-                <div className={`grid gap-[8px] mb-[20px]${errors.message ? ' [&_.field-err]:flex [&_.field-input]:border-error' : ''}`}>
+                <div className="grid gap-[8px] mb-[20px]">
                   <label htmlFor="message" className="text-[14px] font-medium text-slate-600">
                     Project details <span className="text-indigo">*</span>
                   </label>
@@ -293,9 +381,9 @@ export function Contact() {
                     onChange={(e) => handleInput('message', e.target.value)}
                     onBlur={() => handleBlur('message')}
                     aria-invalid={errors.message ? 'true' : 'false'}
-                    className={`field-input font-[inherit] text-[16px] px-[14px] py-[12px] border rounded-[8px] bg-white text-ink-900 transition-[0.15s] w-full placeholder:text-slate-400 focus:outline-none focus:border-indigo focus:shadow-[0_0_0_3px_var(--color-indigo-200)] resize-y min-h-[120px]${errors.message ? ' border-error' : ' border-slate-300'}`}
+                    className={`font-[inherit] text-[16px] px-[14px] py-[12px] border rounded-[8px] bg-white text-ink-900 transition-[0.15s] w-full placeholder:text-slate-400 focus:outline-none focus:border-indigo focus:shadow-[0_0_0_3px_var(--color-indigo-200)] resize-y min-h-[120px]${errors.message ? ' border-error' : ' border-slate-300'}`}
                   />
-                  <span className={`field-err text-[13px] text-error ${errors.message ? 'flex' : 'hidden'} items-center gap-[5px]`}>
+                  <span className={`text-[13px] text-error ${errors.message ? 'flex' : 'hidden'} items-center gap-[5px]`}>
                     <AlertCircle className="w-[14px] h-[14px]" strokeWidth={1.75} /> Tell us a little about the project
                   </span>
                 </div>

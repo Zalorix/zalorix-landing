@@ -10,6 +10,9 @@
     "test": "vitest run"
   },
   "dependencies": {
+    "@floating-ui/react": "^0.27.19",
+    "country-flag-icons": "^1.6.17",
+    "libphonenumber-js": "^1.13.6",
     "lucide-react": "^1.17.0",
     "next": "16.2.6",
     "react": "19.2.4",

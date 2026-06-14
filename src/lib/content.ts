@@ -117,6 +117,23 @@ export const pricingTiers: PricingTier[] = [
     cta: 'Start a project',
   },
   {
+    name: 'Business',
+    price: '₱25,000',
+    from: true,
+    best: 'More room to grow, with content control.',
+    featured: true,
+    features: [
+      { icon: 'check', text: 'Up to ~8 pages, custom mobile-first design' },
+      { icon: 'repeat-2', text: 'Up to 4 design iterations' },
+      { icon: 'check', text: 'Editable CMS / blog' },
+      { icon: 'check', text: 'On-page SEO + analytics' },
+      { icon: 'check', text: 'Social & Google integrations' },
+      { icon: 'check', text: 'SSL + 1-year hosting · 75-day support' },
+      { icon: 'check', text: '~2–4 weeks' },
+    ],
+    cta: 'Start a project',
+  },
+  {
     name: 'Growth',
     price: '₱35,000',
     from: true,
@@ -131,7 +148,6 @@ export const pricingTiers: PricingTier[] = [
       { icon: 'check', text: '~4–6 weeks' },
     ],
     cta: 'Start a project',
-    featured: true,
   },
   {
     name: 'E-commerce',

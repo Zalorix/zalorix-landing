@@ -5,6 +5,6 @@ import Home from '../page'
 describe('landing page', () => {
   it('renders the hero headline', () => {
     render(<Home />)
-    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(/Enterprise-grade web/i)
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(/visitors into customers/i)
   })
 })

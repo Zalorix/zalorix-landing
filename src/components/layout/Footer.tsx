@@ -1,4 +1,5 @@
-import { Mail } from 'lucide-react'
+import Link from 'next/link'
+import { ArrowUp, Mail } from 'lucide-react'
 import { RMark } from '@/components/ui/RMark'
 import { Wrap } from '@/components/ui/Section'
 
@@ -123,12 +124,23 @@ export function Footer() {
           <p className="text-[14px] text-slate-400">
             &copy; {year} Rozalix. All rights reserved.
           </p>
-          <div className="flex gap-6">
-            <a href="#" className="text-[14px] text-slate-400 transition-colors duration-150 hover:text-white">
+          <div className="flex items-center gap-6">
+            <Link href="/privacy" className="text-[14px] text-slate-400 transition-colors duration-150 hover:text-white">
               Privacy
-            </a>
-            <a href="#" className="text-[14px] text-slate-400 transition-colors duration-150 hover:text-white">
+            </Link>
+            <Link href="/terms" className="text-[14px] text-slate-400 transition-colors duration-150 hover:text-white">
               Terms
+            </Link>
+            <a
+              href="#top"
+              aria-label="Back to top"
+              className="group grid h-10 w-10 place-items-center rounded-full border border-slate-800 text-slate-400 transition-[color,border-color,background] duration-150 hover:text-white hover:border-slate-600 hover:bg-slate-800"
+            >
+              <ArrowUp
+                size={18}
+                strokeWidth={2}
+                className="transition-transform duration-150 group-hover:-translate-y-[2px]"
+              />
             </a>
           </div>
         </div>

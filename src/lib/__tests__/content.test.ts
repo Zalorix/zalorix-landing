@@ -9,8 +9,8 @@ describe('landing content', () => {
   it('has 5 process steps numbered 01..05', () => {
     expect(processSteps.map((s) => s.num)).toEqual(['01', '02', '03', '04', '05'])
   })
-  it('has 4 pricing tiers and 3 care plans', () => {
-    expect(pricingTiers).toHaveLength(4)
+  it('has 5 pricing tiers and 3 care plans', () => {
+    expect(pricingTiers).toHaveLength(5)
     expect(carePlans).toHaveLength(3)
   })
 })

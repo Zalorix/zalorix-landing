@@ -2,6 +2,7 @@ import { Section, Wrap, SectionHead } from '@/components/ui/Section'
 import { Reveal } from '@/components/ui/Reveal'
 import { Button } from '@/components/ui/Button'
 import { Icon } from '@/components/ui/Icon'
+import { PricingScroller } from '@/components/sections/PricingScroller'
 import { pricingTiers, carePlans } from '@/lib/content'
 
 // ─── Helper: split "₱1,500/mo" into price and "/mo" suffix ────────────────────
@@ -41,25 +42,15 @@ export function Pricing() {
           </SectionHead>
         </Reveal>
 
-        {/*
-          .price-grid:
-            display:grid; grid-template-columns:repeat(4,1fr); gap:20px;
-            margin-top:56px; align-items:start
-          @media(max-width:1040px): grid-template-columns:1fr 1fr
-          @media(max-width:560px):  grid-template-columns:1fr
-        */}
-        <div
-          className="
-            mt-[56px]
-            grid gap-[20px]
-            items-start
-            [grid-template-columns:repeat(4,1fr)]
-            max-[1040px]:[grid-template-columns:1fr_1fr]
-            max-[560px]:[grid-template-columns:1fr]
-          "
-        >
+        {/* Horizontal, snap-scrolling rail (showcases motion); cards reveal as
+            they enter view. */}
+        <PricingScroller>
           {pricingTiers.map((tier, i) => (
-            <Reveal key={tier.name} delay={i * 80}>
+            <Reveal
+              key={tier.name}
+              delay={i * 80}
+              className="w-[300px] max-[560px]:w-[82vw] shrink-0 snap-start"
+            >
               {/*
                 .price-card:
                   border:1px solid var(--slate-200); border-radius:var(--r-md)[12px];
@@ -74,7 +65,7 @@ export function Pricing() {
               */}
               <div
                 className={[
-                  'relative flex flex-col rounded-[12px] border bg-white px-[26px] py-[30px]',
+                  'relative flex h-full flex-col rounded-[12px] border bg-white px-[26px] py-[30px]',
                   'shadow-[var(--shadow-card)]',
                   'transition-[transform,box-shadow] duration-[180ms] ease-[ease]',
                   'hover:-translate-y-[4px] hover:shadow-[var(--shadow-hover)]',
@@ -165,7 +156,7 @@ export function Pricing() {
               </div>
             </Reveal>
           ))}
-        </div>
+        </PricingScroller>
 
         {/* ── Care plans ─────────────────────────────────────────────────────── */}
         {/*

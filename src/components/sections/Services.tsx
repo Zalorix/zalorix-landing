@@ -1,6 +1,7 @@
 import { Section, Wrap, SectionHead } from '@/components/ui/Section'
 import { Reveal } from '@/components/ui/Reveal'
 import { Icon } from '@/components/ui/Icon'
+import { MobileCarousel } from '@/components/ui/MobileCarousel'
 import { services } from '@/lib/content'
 
 export function Services() {
@@ -30,22 +31,21 @@ export function Services() {
             display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:56px
           @media(max-width:920px): grid-template-columns:1fr 1fr
           @media(max-width:600px): grid-template-columns:1fr
+          On mobile (≤560px) this becomes a snap carousel via MobileCarousel.
         */}
-        <div
-          className="
-            mt-[56px]
-            grid gap-[24px]
-            [grid-template-columns:repeat(3,1fr)]
-            max-[920px]:[grid-template-columns:1fr_1fr]
-            max-[600px]:[grid-template-columns:1fr]
-          "
+        <MobileCarousel
+          gridClassName="grid gap-[24px] [grid-template-columns:repeat(3,1fr)] max-[920px]:[grid-template-columns:1fr_1fr] max-[600px]:[grid-template-columns:1fr]"
         >
           {services.map((s, i) => (
             /*
               Each card individually wrapped in Reveal for staggered entrance.
               Delay increments: 0, 80, 160, 240, 320, 400 ms
             */
-            <Reveal key={s.icon} delay={i * 80} className="h-full">
+            <Reveal
+              key={s.icon}
+              delay={i * 80}
+              className="h-full max-[560px]:w-[82vw] max-[560px]:shrink-0 max-[560px]:snap-start"
+            >
               {/*
                 .svc-card:
                   border:1px solid var(--slate-200); border-radius:var(--r-md)[12px];
@@ -96,7 +96,7 @@ export function Services() {
               </div>
             </Reveal>
           ))}
-        </div>
+        </MobileCarousel>
       </Wrap>
     </Section>
   )
