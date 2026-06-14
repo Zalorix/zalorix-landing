@@ -7,13 +7,13 @@ import './globals.css'
 export const viewport: Viewport = { themeColor: '#4F46E5' }
 
 export const metadata: Metadata = {
-  title: 'Rozalix — Web design & development, end to end',
-  description: 'Rozalix designs and builds fast, modern websites and web applications for businesses that want to stand out and scale. Enterprise-grade web, without the enterprise overhead.',
+  title: 'Rozalix — Websites that turn visitors into customers',
+  description: 'Rozalix designs and builds fast, custom websites that get your business found, build trust, and turn visitors into paying customers — and grow with you as you scale.',
   icons: { icon: '/favicon.svg', apple: '/favicon.svg' },
   openGraph: {
     type: 'website',
-    title: 'Rozalix — Web design & development, end to end',
-    description: 'Fast, modern websites and web apps for businesses that want to stand out and scale.',
+    title: 'Rozalix — Websites that turn visitors into customers',
+    description: 'Fast, custom websites that get your business found, build trust, and turn visitors into paying customers.',
     siteName: 'Rozalix',
   },
 }

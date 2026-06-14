@@ -21,7 +21,7 @@ export function CtaBand() {
       {/* Pseudo-element glow — replicates .cta-band::before */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0"
+        className="rz-drift pointer-events-none absolute inset-0"
         style={{
           background:
             'radial-gradient(700px 400px at 90% 120%, rgba(124,58,237,.5), transparent 60%), ' +
@@ -43,7 +43,7 @@ export function CtaBand() {
              * @media (max-width: 560px): font-size: 34px
              */}
             <h2 className="text-[46px] max-[560px]:text-[34px] text-white tracking-[-0.03em]">
-              Ready to build something that performs?
+              Ready to turn visitors into customers?
             </h2>
 
             {/*
@@ -71,7 +71,7 @@ export function CtaBand() {
                 href="#contact"
                 className="group shadow-[0_10px_30px_rgba(15,23,42,.25)]"
               >
-                Start a project{' '}
+                Book a free consultation{' '}
                 <ArrowRight
                   strokeWidth={1.75}
                   className="arr transition-transform duration-150 group-hover:translate-x-[3px]"

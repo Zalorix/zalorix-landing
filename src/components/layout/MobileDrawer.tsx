@@ -94,7 +94,7 @@ export function MobileDrawer({ open, onClose }: MobileDrawerProps) {
         {/* CTA */}
         <div className="mt-4">
           <Button variant="primary" href="#contact" block onClick={onClose}>
-            Start a project
+            Book a free consultation
           </Button>
         </div>
       </div>

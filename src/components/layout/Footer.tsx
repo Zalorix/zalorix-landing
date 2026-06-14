@@ -93,7 +93,6 @@ export function Footer() {
             </h4>
             <a href="#services" className={colLinkClass}>Services</a>
             <a href="#process"  className={colLinkClass}>Process</a>
-            <a href="#work"     className={colLinkClass}>Work</a>
             <a href="#why"      className={colLinkClass}>Why Rozalix</a>
           </div>
 

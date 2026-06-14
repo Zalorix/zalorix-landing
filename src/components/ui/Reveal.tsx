@@ -45,7 +45,7 @@ export function Reveal({
   return (
     <Tag
       ref={ref as React.Ref<HTMLElement>}
-      className={`transition-[opacity,transform] duration-[600ms] ease-[ease] motion-reduce:transition-none ${shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'} ${className}`}
+      className={`transition-[opacity,transform] duration-[700ms] ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none motion-reduce:translate-y-0 ${shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'} ${className}`}
       style={delay ? { transitionDelay: `${delay}ms` } : undefined}
     >
       {children}

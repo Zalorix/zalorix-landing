@@ -45,7 +45,7 @@ export function Services() {
               Each card individually wrapped in Reveal for staggered entrance.
               Delay increments: 0, 80, 160, 240, 320, 400 ms
             */
-            <Reveal key={s.icon} delay={i * 80}>
+            <Reveal key={s.icon} delay={i * 80} className="h-full">
               {/*
                 .svc-card:
                   border:1px solid var(--slate-200); border-radius:var(--r-md)[12px];
@@ -58,6 +58,7 @@ export function Services() {
               */}
               <div
                 className="
+                  group h-full
                   rounded-[12px] border border-slate-200 bg-white
                   p-[28px]
                   shadow-[var(--shadow-card)]
@@ -75,7 +76,7 @@ export function Services() {
                     margin-bottom:20px
                   .svc-card .ic svg: width:23px; height:23px; color:var(--indigo)
                 */}
-                <div className="mb-[20px] grid h-[46px] w-[46px] place-items-center rounded-[8px] bg-indigo-50">
+                <div className="mb-[20px] grid h-[46px] w-[46px] place-items-center rounded-[8px] bg-indigo-50 transition-[transform,background-color] duration-[250ms] ease-out group-hover:scale-110 group-hover:bg-indigo motion-reduce:transform-none [&>svg]:transition-colors [&>svg]:duration-[250ms] group-hover:[&>svg]:text-white">
                   <Icon name={s.icon} className="h-[23px] w-[23px] text-indigo" />
                 </div>
 

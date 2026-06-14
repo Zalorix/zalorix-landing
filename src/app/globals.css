@@ -58,7 +58,7 @@
    all nav links indigo. */
 @layer base {
   *, *::before, *::after { box-sizing: border-box; }
-  html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-h) + 24px); }
+  html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-h) + 24px); overflow-x: clip; }
   body {
     margin: 0;
     font-family: var(--font-sans);
@@ -68,6 +68,9 @@
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    /* safety net: never allow horizontal scroll on very narrow screens.
+       `clip` (not `hidden`) so it doesn't create a scroll container — keeps the sticky nav working. */
+    overflow-x: clip;
   }
   h1, h2, h3, h4 { margin: 0; font-family: var(--font-display); letter-spacing: -0.02em; line-height: 1.12; font-weight: 600; }
   p { margin: 0; }
@@ -105,6 +108,12 @@ a.work-card { color: inherit; display: block; }
 .work-card__view { display: inline-flex; align-items: center; gap: 7px; margin-top: 14px; font-size: 14px; font-weight: 600; color: var(--color-indigo); }
 .work-card__view svg { width: 16px; height: 16px; transition: transform .15s ease; }
 a.work-card:hover .work-card__view svg { transform: translateX(3px); }
+/* subtle zoom on the case-study artwork when hovering the card */
+.work-card__shot > * { transition: transform .45s cubic-bezier(.22,1,.36,1); }
+a.work-card:hover .work-card__shot > * { transform: scale(1.04); }
+@media (prefers-reduced-motion: reduce) {
+  a.work-card:hover .work-card__shot > * { transform: none; }
+}
 .work-note { margin-top: 28px; display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--color-slate-400); }
 .work-note svg { width: 16px; height: 16px; }
 
@@ -880,4 +889,30 @@ a.work-card:hover .work-card__view svg { transform: translateX(3px); }
 @media (max-width: 720px){
   .sap-mock-hero, .sap-mock-frow { grid-template-columns: 1fr; }
   .sap-mock-feats, .sap-mock-steps { grid-template-columns: 1fr; }
+}
+
+/* Floating hero chips — gentle vertical bob */
+@keyframes rz-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+.rz-float {
+  animation: rz-float 4.5s ease-in-out infinite;
+  will-change: transform;
+}
+@media (prefers-reduced-motion: reduce) {
+  .rz-float { animation: none; }
+}
+
+/* Ambient glow drift — for the dark "Why" panel */
+@keyframes rz-drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%      { transform: translate(-18px, 16px) scale(1.1); }
+}
+.rz-drift {
+  animation: rz-drift 16s ease-in-out infinite;
+  will-change: transform;
+}
+@media (prefers-reduced-motion: reduce) {
+  .rz-drift { animation: none; }
 }
