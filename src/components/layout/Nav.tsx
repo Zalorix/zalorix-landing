@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import { Menu } from 'lucide-react'
-import { ZMark } from '@/components/ui/ZMark'
+import { RMark } from '@/components/ui/RMark'
 import { Button } from '@/components/ui/Button'
 import { navLinks } from '@/lib/nav'
 import { MobileDrawer } from '@/components/layout/MobileDrawer'
@@ -63,12 +63,12 @@ export function Nav() {
           {/* Brand */}
           <a
             href="#top"
-            aria-label="Zalorix home"
+            aria-label="Rozalix home"
             className="flex items-center gap-[9px] mr-auto"
           >
-            <ZMark className="w-7 h-7 text-indigo" />
+            <RMark className="w-7 h-7 text-indigo" />
             <span className="font-display font-semibold text-[20px] tracking-[-0.02em] text-ink-900">
-              Zalorix
+              Rozalix
             </span>
           </a>
 

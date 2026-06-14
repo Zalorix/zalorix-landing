@@ -74,7 +74,7 @@ export function Why() {
               .section__head: margin-bottom:24px
             */}
             <div className="mb-[24px]">
-              <Eyebrow>Why Zalorix</Eyebrow>
+              <Eyebrow>Why Rozalix</Eyebrow>
               <h2 className="mt-[14px] mb-[18px] text-[40px]">
                 A studio that ships serious work.
               </h2>
@@ -167,7 +167,7 @@ export function Why() {
                 aria-hidden="true"
               />
 
-              <Eyebrow className="text-indigo-400">The Zalorix difference</Eyebrow>
+              <Eyebrow className="text-indigo-400">The Rozalix difference</Eyebrow>
 
               {/*
                 .why-panel h3: font-size:30px; color:#fff; margin:14px 0 28px; max-width:16ch

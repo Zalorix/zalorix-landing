@@ -19,7 +19,7 @@ import Link from 'next/link'
 import { ArrowRight, Info, ChevronRight } from 'lucide-react'
 import { Wrap } from '@/components/ui/Section'
 import { Reveal } from '@/components/ui/Reveal'
-import { ZMark } from '@/components/ui/ZMark'
+import { RMark } from '@/components/ui/RMark'
 import { Button } from '@/components/ui/Button'
 
 // ── Types ──────────────────────────────────────────────────────────────────
@@ -258,12 +258,12 @@ export function CaseLayout({
                 {overviewLede}
               </div>
 
-              {/* "by Zalorix" credit */}
+              {/* "by Rozalix" credit */}
               <div className="mt-[28px] flex items-center gap-[12px] text-[15px] text-slate-600">
                 <span className="grid h-[30px] w-[30px] shrink-0 place-items-center rounded-[var(--radius-sm)] bg-indigo text-white">
-                  <ZMark className="h-[17px] w-[17px]" mono />
+                  <RMark className="h-[17px] w-[17px]" mono />
                 </span>
-                <span>Concept &amp; design by Zalorix — design &amp; development, end to end.</span>
+                <span>Concept &amp; design by Rozalix — design &amp; development, end to end.</span>
               </div>
             </Reveal>
           </Wrap>

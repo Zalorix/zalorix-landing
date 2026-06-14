@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react'
 import { X } from 'lucide-react'
-import { ZMark } from '@/components/ui/ZMark'
+import { RMark } from '@/components/ui/RMark'
 import { Button } from '@/components/ui/Button'
 import { navLinks } from '@/lib/nav'
 
@@ -63,11 +63,11 @@ export function MobileDrawer({ open, onClose }: MobileDrawerProps) {
             onClick={onClose}
             className="flex items-center gap-[9px]"
           >
-            <ZMark className="w-[26px] h-[26px] text-indigo" />
+            <RMark className="w-[26px] h-[26px] text-indigo" />
             <span
               className="font-display font-semibold text-[20px] tracking-[-0.02em] text-ink-900"
             >
-              Zalorix
+              Rozalix
             </span>
           </a>
           <button

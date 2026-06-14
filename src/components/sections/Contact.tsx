@@ -108,10 +108,10 @@ export function Contact() {
                   <div>
                     <div className="text-[13px] font-semibold uppercase tracking-[.06em] text-slate-400">Email</div>
                     <a
-                      href="mailto:hello@zalorix.com"
+                      href="mailto:hello@rozalix.com"
                       className="block text-[16.5px] font-medium text-indigo mt-[2px]"
                     >
-                      hello@zalorix.com
+                      hello@rozalix.com
                     </a>
                   </div>
                 </div>
@@ -334,7 +334,7 @@ export function Contact() {
                 <h3 className="text-[24px] mb-[10px]">Thanks — we've got it.</h3>
                 <p className="text-slate-600">
                   We'll be in touch within one business day. In the meantime, feel free to email us
-                  at hello@zalorix.com.
+                  at hello@rozalix.com.
                 </p>
               </div>
             )}

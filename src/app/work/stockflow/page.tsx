@@ -57,9 +57,9 @@ import { relatedTo } from '@/lib/caseStudies'
 // ── Metadata ────────────────────────────────────────────────────────────────
 
 export const metadata: Metadata = {
-  title: 'StockFlow — Concept case study · Zalorix',
+  title: 'StockFlow — Concept case study · Rozalix',
   description:
-    'A concept web-app case study by Zalorix: a custom inventory & order management dashboard for a fictional small retailer, StockFlow — proof of hand-coded, full-control product work.',
+    'A concept web-app case study by Rozalix: a custom inventory & order management dashboard for a fictional small retailer, StockFlow — proof of hand-coded, full-control product work.',
 }
 
 // ── Shared dashboard sidebar (used across all SF screens) ────────────────────
@@ -512,7 +512,7 @@ export default function StockFlowPage() {
         { label: 'Stack', value: 'Hand-coded', sub: 'React / Next.js · API · role-based auth' },
         { label: 'Timeline', value: 'Illustrative' },
       ]}
-      disclaimer="This is a concept piece created to demonstrate Zalorix's approach — StockFlow is a fictional product. All data shown is sample data; there are no real users or usage figures, and any targets are clearly labelled as such."
+      disclaimer="This is a concept piece created to demonstrate Rozalix's approach — StockFlow is a fictional product. All data shown is sample data; there are no real users or usage figures, and any targets are clearly labelled as such."
       overviewLede={
         <>
           Spreadsheets don&apos;t scale. We designed a <em>custom, hand-coded web app</em> that pulls stock, orders, and suppliers into one live view — the kind of bespoke application logic a page builder simply can&apos;t produce.

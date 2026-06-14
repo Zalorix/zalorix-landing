@@ -51,9 +51,9 @@ import { relatedTo } from '@/lib/caseStudies'
 // ── Metadata ────────────────────────────────────────────────────────────────
 
 export const metadata: Metadata = {
-  title: 'Sapling — Concept case study · Zalorix',
+  title: 'Sapling — Concept case study · Rozalix',
   description:
-    'A concept landing-page case study by Zalorix: a conversion-focused launch page for a fictional fintech app, Sapling — budgeting for young Filipinos.',
+    'A concept landing-page case study by Rozalix: a conversion-focused launch page for a fictional fintech app, Sapling — budgeting for young Filipinos.',
 }
 
 // ── Phone app (the in-hand mockup, reused across hero + mobile) ──────────────
@@ -395,7 +395,7 @@ export default function SaplingPage() {
         { label: 'Stack', value: 'Hand-coded', sub: 'Fast · animation-light' },
         { label: 'Timeline', value: 'Illustrative' },
       ]}
-      disclaimer="This is a concept piece created to demonstrate Zalorix's approach — Sapling is a fictional app. There are no real users, downloads, or sign-up figures here; any numbers shown are design targets and sample data, clearly labelled as such."
+      disclaimer="This is a concept piece created to demonstrate Rozalix's approach — Sapling is a fictional app. There are no real users, downloads, or sign-up figures here; any numbers shown are design targets and sample data, clearly labelled as such."
       overviewLede={
         <>
           A pre-launch app gets one shot at a first impression. We designed a <em>single, focused page</em> that explains the product in a scroll and turns curious visitors into sign-ups and downloads.
@@ -534,7 +534,7 @@ export default function SaplingPage() {
       {/* ── WHAT THIS DEMONSTRATES ────────────────────────────────────── */}
       <CaseDemoSection
         title="Capability, shown — not claimed."
-        subtitle="No invented sign-up numbers. Here's what the concept is built to prove Zalorix can do."
+        subtitle="No invented sign-up numbers. Here's what the concept is built to prove Rozalix can do."
         targets={[
           { icon: <Gauge />, label: 'Design target', value: '< 1.5s' },
           { icon: <Smartphone />, label: 'Design target', value: 'Mobile-first' },

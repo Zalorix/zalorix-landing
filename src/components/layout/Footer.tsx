@@ -1,5 +1,5 @@
 import { Mail } from 'lucide-react'
-import { ZMark } from '@/components/ui/ZMark'
+import { RMark } from '@/components/ui/RMark'
 import { Wrap } from '@/components/ui/Section'
 
 // Brand icons not in this version of lucide-react — using canonical SVG paths
@@ -54,12 +54,12 @@ export function Footer() {
           <div className="max-[860px]:col-span-full">
             {/* Mark + wordmark */}
             <div className="flex items-center gap-2.75 mb-4.5">
-              <ZMark mono className="w-8 h-8 text-white" />
+              <RMark mono className="w-8 h-8 text-white" />
               <span
                 className="font-semibold text-[24px] tracking-[-0.02em]"
                 style={{ fontFamily: 'var(--font-display)' }}
               >
-                Zalorix
+                Rozalix
               </span>
             </div>
 
@@ -80,7 +80,7 @@ export function Footer() {
               <a href="#" aria-label="GitHub" className={socialLinkClass}>
                 <GithubIcon size={18} />
               </a>
-              <a href="mailto:hello@zalorix.com" aria-label="Email" className={socialLinkClass}>
+              <a href="mailto:hello@rozalix.com" aria-label="Email" className={socialLinkClass}>
                 <Mail size={18} strokeWidth={1.75} />
               </a>
             </div>
@@ -94,7 +94,7 @@ export function Footer() {
             <a href="#services" className={colLinkClass}>Services</a>
             <a href="#process"  className={colLinkClass}>Process</a>
             <a href="#work"     className={colLinkClass}>Work</a>
-            <a href="#why"      className={colLinkClass}>Why Zalorix</a>
+            <a href="#why"      className={colLinkClass}>Why Rozalix</a>
           </div>
 
           {/* ── Services column ── */}
@@ -114,7 +114,7 @@ export function Footer() {
               Get in touch
             </h4>
             <a href="#contact"                className={colLinkClass}>Start a project</a>
-            <a href="mailto:hello@zalorix.com" className={colLinkClass}>hello@zalorix.com</a>
+            <a href="mailto:hello@rozalix.com" className={colLinkClass}>hello@rozalix.com</a>
             <a href="#contact"                className={colLinkClass}>Book a call</a>
           </div>
         </div>
@@ -122,7 +122,7 @@ export function Footer() {
         {/* ── Bottom bar ── */}
         <div className="flex items-center justify-between gap-4 mt-14 pt-7 border-t border-slate-800 flex-wrap">
           <p className="text-[14px] text-slate-400">
-            &copy; {year} Zalorix. All rights reserved.
+            &copy; {year} Rozalix. All rights reserved.
           </p>
           <div className="flex gap-6">
             <a href="#" className="text-[14px] text-slate-400 transition-colors duration-150 hover:text-white">

@@ -42,9 +42,9 @@ import { relatedTo } from '@/lib/caseStudies'
 // ── Metadata ────────────────────────────────────────────────────────────────
 
 export const metadata: Metadata = {
-  title: 'Northpoint Advisory — Concept case study · Zalorix',
+  title: 'Northpoint Advisory — Concept case study · Rozalix',
   description:
-    'A concept corporate-website case study by Zalorix: a trust-first marketing site for a fictional management consulting firm, Northpoint Advisory.',
+    'A concept corporate-website case study by Rozalix: a trust-first marketing site for a fictional management consulting firm, Northpoint Advisory.',
 }
 
 // ── Cover shot — CSS-art homepage mockup ────────────────────────────────────
@@ -175,7 +175,7 @@ export default function NorthpointAdvisoryPage() {
         { label: 'Stack', value: 'Hand-coded', sub: 'Next.js + headless CMS' },
         { label: 'Timeline', value: 'Illustrative' },
       ]}
-      disclaimer="This is a concept piece created to demonstrate Zalorix's approach — Northpoint Advisory is a fictional firm. There are no real clients, testimonials, or results here; any figures shown are design targets, clearly labelled as such."
+      disclaimer="This is a concept piece created to demonstrate Rozalix's approach — Northpoint Advisory is a fictional firm. There are no real clients, testimonials, or results here; any figures shown are design targets, clearly labelled as such."
       overviewLede={
         <>
           A B2B consultancy lives and dies on <em>credibility</em>. We designed a website that earns trust on first scroll — clear service architecture, a senior team front and centre, and a path to a conversation that never feels more than one click away.
@@ -310,7 +310,7 @@ export default function NorthpointAdvisoryPage() {
       {/* ── WHAT THIS DEMONSTRATES ────────────────────────────────────── */}
       <CaseDemoSection
         title="Capability, shown — not claimed."
-        subtitle="No invented metrics. Here's what the concept is built to prove Zalorix can do."
+        subtitle="No invented metrics. Here's what the concept is built to prove Rozalix can do."
         targets={[
           { icon: <Gauge />, label: 'Design target', value: '< 2s load' },
           { icon: <Smartphone />, label: 'Design target', value: '100% responsive' },

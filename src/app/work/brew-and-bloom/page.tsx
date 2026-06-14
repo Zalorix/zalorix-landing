@@ -44,9 +44,9 @@ import { relatedTo } from '@/lib/caseStudies'
 // ── Metadata ────────────────────────────────────────────────────────────────
 
 export const metadata: Metadata = {
-  title: 'Brew & Bloom — Concept case study · Zalorix',
+  title: 'Brew & Bloom — Concept case study · Rozalix',
   description:
-    'A concept e-commerce case study by Zalorix: a fast, mobile-first online store for a fictional specialty coffee & homeware brand, Brew & Bloom.',
+    'A concept e-commerce case study by Rozalix: a fast, mobile-first online store for a fictional specialty coffee & homeware brand, Brew & Bloom.',
 }
 
 // ── Cover shot — CSS-art storefront + overlapping checkout phone ─────────────
@@ -222,7 +222,7 @@ export default function BrewAndBloomPage() {
         { label: 'Stack', value: 'Hand-coded', sub: 'Storefront + GCash / Maya / card' },
         { label: 'Timeline', value: 'Illustrative' },
       ]}
-      disclaimer="This is a concept piece created to demonstrate Zalorix's approach — Brew & Bloom is a fictional brand. There are no real products, customers, or sales here; any figures shown are design targets and sample data, clearly labelled as such."
+      disclaimer="This is a concept piece created to demonstrate Rozalix's approach — Brew & Bloom is a fictional brand. There are no real products, customers, or sales here; any figures shown are design targets and sample data, clearly labelled as such."
       overviewLede={
         <>
           A premium product deserves a premium store. We designed an e-commerce experience that feels as considered as the brand itself — <em>warm, fast, and built to convert the mobile shopper</em> who's deciding in the time it takes a kettle to boil.
@@ -357,7 +357,7 @@ export default function BrewAndBloomPage() {
       {/* ── WHAT THIS DEMONSTRATES ────────────────────────────────────── */}
       <CaseDemoSection
         title="Capability, shown — not claimed."
-        subtitle="No invented sales figures. Here's what the concept is built to prove Zalorix can do."
+        subtitle="No invented sales figures. Here's what the concept is built to prove Rozalix can do."
         targets={[
           { icon: <Gauge />, label: 'Design target', value: '< 2s load' },
           { icon: <Smartphone />, label: 'Design target', value: '1-page checkout' },

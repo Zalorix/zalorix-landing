@@ -205,7 +205,7 @@ a.work-card:hover .work-card__view svg { transform: translateX(3px); }
 /* ============================================================
    Northpoint Advisory — Cover mockup CSS art
    Scoped under .np-browser-frame / .np-mock-* so it never
-   leaks into the Zalorix brand chrome.
+   leaks into the Rozalix brand chrome.
    Deep navy (#0E2240) + warm gold (#C19A45) palette.
    ============================================================ */
 
@@ -405,7 +405,7 @@ a.work-card:hover .work-card__view svg { transform: translateX(3px); }
 
 /* ============================================================
    Brew & Bloom — Cover mockup CSS art
-   Scoped under .bb-mock so it never leaks into the Zalorix
+   Scoped under .bb-mock so it never leaks into the Rozalix
    brand chrome. Warm cream + terracotta + sage palette.
    ============================================================ */
 .bb-mock {
@@ -552,7 +552,7 @@ a.work-card:hover .work-card__view svg { transform: translateX(3px); }
 /* ============================================================
    StockFlow — Cover + gallery mockup CSS art
    Ported from sf.css; scoped under .sf-mock so the dashboard
-   art never leaks into the Zalorix brand chrome.
+   art never leaks into the Rozalix brand chrome.
    Emerald accent + neutral grays · Manrope.
    ============================================================ */
 .sf-mock {
@@ -725,7 +725,7 @@ a.work-card:hover .work-card__view svg { transform: translateX(3px); }
 /* ============================================================
    Sapling — Cover + gallery mockup CSS art
    Ported from sap.css; scoped under .sap-mock so the fintech
-   landing art never leaks into the Zalorix brand chrome.
+   landing art never leaks into the Rozalix brand chrome.
    Vibrant violet + soft gradients · Plus Jakarta Sans (rounded, friendly).
    Custom props prefixed --sap-* to avoid collisions.
    ============================================================ */

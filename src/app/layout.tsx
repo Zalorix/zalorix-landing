@@ -7,14 +7,14 @@ import './globals.css'
 export const viewport: Viewport = { themeColor: '#4F46E5' }
 
 export const metadata: Metadata = {
-  title: 'Zalorix — Web design & development, end to end',
-  description: 'Zalorix designs and builds fast, modern websites and web applications for businesses that want to stand out and scale. Enterprise-grade web, without the enterprise overhead.',
+  title: 'Rozalix — Web design & development, end to end',
+  description: 'Rozalix designs and builds fast, modern websites and web applications for businesses that want to stand out and scale. Enterprise-grade web, without the enterprise overhead.',
   icons: { icon: '/favicon.svg', apple: '/favicon.svg' },
   openGraph: {
     type: 'website',
-    title: 'Zalorix — Web design & development, end to end',
+    title: 'Rozalix — Web design & development, end to end',
     description: 'Fast, modern websites and web apps for businesses that want to stand out and scale.',
-    siteName: 'Zalorix',
+    siteName: 'Rozalix',
   },
 }
 
