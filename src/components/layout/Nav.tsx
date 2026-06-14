@@ -94,10 +94,10 @@ export function Nav() {
 
           {/* CTA area */}
           <div className="flex items-center gap-[10px]">
-            {/* "Start a project" button — hidden at ≤920px */}
+            {/* CTA button — hidden at ≤920px */}
             <div className="max-[920px]:hidden">
               <Button variant="primary" href="#contact">
-                Start a project
+                Book a consultation
               </Button>
             </div>
 

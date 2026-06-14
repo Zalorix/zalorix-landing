@@ -74,7 +74,7 @@ export function Contact() {
               {/*
                 .contact-info h2: font-size:38px; margin:14px 0 18px
               */}
-              <h2 className="text-[38px] my-[14px] mb-[18px]">
+              <h2 className="text-[38px] max-[560px]:text-[29px] my-[14px] mb-[18px]">
                 Let's talk about what you're building.
               </h2>
               {/*

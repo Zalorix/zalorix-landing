@@ -1,6 +1,7 @@
 import { Section, Wrap, SectionHead } from '@/components/ui/Section'
 import { Reveal } from '@/components/ui/Reveal'
 import { processSteps } from '@/lib/content'
+import { InView } from '@/components/ui/InView'
 
 export function Process() {
   return (
@@ -28,9 +29,9 @@ export function Process() {
             top:0; bottom:0; left:26px; right:auto; width:2px; height:auto;
             background:linear-gradient(180deg, var(--indigo-200), var(--slate-200))
         */}
-        <div
+        <InView
           className="
-            relative
+            group relative
             mt-[56px]
             grid gap-[24px]
             [grid-template-columns:repeat(5,1fr)]
@@ -44,6 +45,7 @@ export function Process() {
             before:right-[6%]
             before:h-[2px]
             before:[background:linear-gradient(90deg,var(--color-indigo-200),var(--color-slate-200))]
+            min-[861px]:before:hidden
 
             max-[860px]:before:top-0
             max-[860px]:before:bottom-0
@@ -54,6 +56,11 @@ export function Process() {
             max-[860px]:before:[background:linear-gradient(180deg,var(--color-indigo-200),var(--color-slate-200))]
           "
         >
+          {/* Desktop connector — draws left-to-right when the section enters view */}
+          <div
+            aria-hidden="true"
+            className="hidden min-[861px]:block absolute top-[26px] left-[6%] right-[6%] h-[2px] origin-left scale-x-0 [background:linear-gradient(90deg,var(--color-indigo-200),var(--color-slate-200))] transition-transform duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-data-[shown=true]:scale-x-100 motion-reduce:scale-x-100 motion-reduce:transition-none"
+          />
           {processSteps.map((step, i) => (
             /*
               Each .step wrapped in Reveal for staggered entrance.
@@ -121,7 +128,7 @@ export function Process() {
               </div>
             </Reveal>
           ))}
-        </div>
+        </InView>
       </Wrap>
     </Section>
   )

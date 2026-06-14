@@ -96,23 +96,23 @@ export function Stats() {
             max-[760px]:[&_.stat:nth-child(4)]:before:hidden
           "
         >
-          {/* Cell 1: static "24/7" — the site works around the clock */}
-          <StaticStat label="Always working for you" delay={0}>
-            24/7
+          {/* Cell 1: lead with the affordable starting price */}
+          <StaticStat label="Starter websites" delay={0}>
+            <span style={{ fontSize: '0.5em', fontWeight: 600 }}>From </span>₱15k
           </StaticStat>
 
-          {/* Cell 2: animated, target=100, suffix="%" */}
-          <AnimatedStat target={100} suffix="%" label="Hand-coded, full control" delay={80} />
+          {/* Cell 2: static "Free" — affordable + free to start, one-two punch */}
+          <StaticStat label="Consultation & quote" delay={80}>
+            Free
+          </StaticStat>
 
           {/* Cell 3: static "1–2 wks" with smaller "wks" span */}
-          <StaticStat label="Typical delivery" delay={160}>
+          <StaticStat label="From idea to launch" delay={160}>
             1–2<span style={{ fontSize: '0.5em', fontWeight: 600 }}> wks</span>
           </StaticStat>
 
-          {/* Cell 4: static "Free" */}
-          <StaticStat label="Consultation & quote" delay={240}>
-            Free
-          </StaticStat>
+          {/* Cell 4: animated "100%" — looks great on phones */}
+          <AnimatedStat target={100} suffix="%" label="Looks great on phones" delay={240} />
         </div>
       </Wrap>
     </section>

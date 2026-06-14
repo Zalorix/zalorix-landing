@@ -5,7 +5,7 @@ type Variant = 'primary' | 'secondary' | 'ghost' | 'light' | 'ghost-light'
 type Size = 'md' | 'lg'
 
 const base =
-  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-sm border border-transparent font-medium transition-[0.15s] [&_svg]:w-[17px] [&_svg]:h-[17px] focus-visible:shadow-[0_0_0_3px_var(--color-indigo-200)]'
+  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-sm border border-transparent font-medium transition-[color,background-color,border-color,box-shadow,transform] duration-200 ease-out hover:-translate-y-px active:translate-y-0 motion-reduce:transform-none motion-reduce:transition-colors [&_svg]:w-[17px] [&_svg]:h-[17px] focus-visible:shadow-[0_0_0_3px_var(--color-indigo-200)]'
 
 const sizes: Record<Size, string> = {
   md: 'text-[16px] px-[22px] py-[13px]',
@@ -13,7 +13,7 @@ const sizes: Record<Size, string> = {
 }
 
 const variants: Record<Variant, string> = {
-  primary: 'bg-indigo text-white hover:bg-indigo-dark active:bg-indigo-deeper',
+  primary: 'bg-indigo text-white hover:bg-indigo-dark active:bg-indigo-deeper hover:shadow-[0_10px_24px_-8px_rgba(79,70,229,0.55)]',
   secondary: 'bg-white text-ink-900 border-slate-300 hover:bg-slate-50 hover:border-slate-400',
   ghost: 'bg-transparent text-indigo hover:bg-indigo-50',
   light: 'bg-white text-indigo-deeper hover:bg-indigo-50',

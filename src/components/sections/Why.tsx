@@ -145,7 +145,7 @@ export function Why() {
               className="
                 relative overflow-hidden
                 rounded-[16px]
-                p-[44px]
+                p-[44px] max-[560px]:p-[26px]
                 text-white
               "
               style={{
@@ -154,7 +154,7 @@ export function Why() {
             >
               {/* ::after glow blob */}
               <div
-                className="pointer-events-none absolute"
+                className="rz-drift pointer-events-none absolute"
                 style={{
                   right: '-60px',
                   top: '-60px',
@@ -173,7 +173,7 @@ export function Why() {
                 .why-panel h3: font-size:30px; color:#fff; margin:14px 0 28px; max-width:16ch
               */}
               <h3
-                className="text-[30px] text-white"
+                className="text-[30px] max-[560px]:text-[25px] text-white"
                 style={{ margin: '14px 0 28px', maxWidth: '16ch' }}
               >
                 One team, accountable from first concept to long after launch.
@@ -191,13 +191,13 @@ export function Why() {
                 className="
                   relative grid
                   [grid-template-columns:1fr_1fr]
-                  gap-[30px]
+                  gap-[30px] max-[560px]:gap-x-[18px] max-[560px]:gap-y-[24px]
                 "
               >
                 {stats.map((s, i) => (
                   <div key={i}>
                     <div
-                      className="font-display text-[42px] font-bold text-white"
+                      className="font-display text-[42px] max-[560px]:text-[30px] font-bold text-white"
                       style={{ letterSpacing: '-0.02em' }}
                     >
                       {s.num}

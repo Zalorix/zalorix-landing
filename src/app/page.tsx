@@ -2,7 +2,7 @@ import { Hero } from '@/components/sections/Hero'
 import { Stats } from '@/components/sections/Stats'
 import { Services } from '@/components/sections/Services'
 import { Process } from '@/components/sections/Process'
-import { Work } from '@/components/sections/Work'
+// import { Work } from '@/components/sections/Work' // hidden for now
 import { Why } from '@/components/sections/Why'
 import { Pricing } from '@/components/sections/Pricing'
 import { CtaBand } from '@/components/sections/CtaBand'
@@ -15,7 +15,7 @@ export default function Home() {
       <Stats />
       <Services />
       <Process />
-      <Work />
+      {/* <Work /> hidden for now */}
       <Why />
       <Pricing />
       <CtaBand />
