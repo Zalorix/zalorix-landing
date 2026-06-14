@@ -43,7 +43,7 @@ export function CtaBand() {
              * @media (max-width: 560px): font-size: 34px
              */}
             <h2 className="text-[46px] max-[560px]:text-[34px] text-white tracking-[-0.03em]">
-              Ready to build something that performs?
+              Ready to turn visitors into customers?
             </h2>
 
             {/*

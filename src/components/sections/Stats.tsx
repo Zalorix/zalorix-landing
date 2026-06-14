@@ -96,8 +96,10 @@ export function Stats() {
             max-[760px]:[&_.stat:nth-child(4)]:before:hidden
           "
         >
-          {/* Cell 1: animated, target=200, suffix="+" */}
-          <AnimatedStat target={200} suffix="+" label="Projects shipped" delay={0} />
+          {/* Cell 1: static "24/7" — the site works around the clock */}
+          <StaticStat label="Always working for you" delay={0}>
+            24/7
+          </StaticStat>
 
           {/* Cell 2: animated, target=100, suffix="%" */}
           <AnimatedStat target={100} suffix="%" label="Hand-coded, full control" delay={80} />

@@ -1,4 +1,4 @@
-import { ArrowRight, CheckCircle2, Lock, TrendingUp, Gauge, Search, Smartphone, Zap } from 'lucide-react'
+import { ArrowRight, CheckCircle2, Lock, TrendingUp, Gauge, Search, Smartphone, Zap, Sparkles } from 'lucide-react'
 import { Reveal } from '@/components/ui/Reveal'
 import { Button } from '@/components/ui/Button'
 import { Wrap } from '@/components/ui/Section'
@@ -49,22 +49,21 @@ export function Hero() {
             */}
             <span
               className="
-                inline-flex items-center gap-2 rounded-[999px]
+                inline-flex items-center gap-2.5 rounded-[999px] whitespace-nowrap
                 border border-slate-200 bg-white
-                px-[10px] py-[6px]
+                px-[14px] py-[6px]
                 text-[13px] font-medium text-slate-600
                 shadow-[var(--shadow-card)]
               "
             >
-              <span
-                className="
-                  rounded-[999px] bg-indigo-50 px-[9px] py-[3px]
-                  text-[12px] font-semibold text-indigo-deeper
-                "
-              >
+              <span className="inline-flex items-center gap-[6px] font-semibold text-indigo-deeper">
+                <Sparkles size={14} strokeWidth={2} aria-hidden="true" />
                 Web Studio
               </span>
-              Design &amp; development, end to end
+              <span className="hidden items-center gap-2.5 sm:inline-flex">
+                <span aria-hidden="true">&mdash;</span>
+                Design &amp; development, end to end
+              </span>
             </span>
 
             {/*
@@ -82,16 +81,17 @@ export function Hero() {
                 leading-[1.04] tracking-[-0.035em]
               "
             >
-              Enterprise-grade web, without the enterprise{' '}
-              <em className="not-italic text-indigo">overhead</em>.
+              Websites that turn visitors into{' '}
+              <em className="not-italic text-indigo">customers</em>.
             </h1>
 
             {/*
               .hero__sub: font-size:20px; color:var(--slate-600); max-width:46ch
             */}
             <p className="text-[20px] text-slate-600 max-w-[46ch]">
-              Fast, hand-coded websites and web apps — built from scratch for full
-              control, speed, and scalability. No templates, no page builders.
+              We design and build fast, custom websites that get your business
+              found, build trust, and turn visitors into paying customers — and
+              grow with you as you scale.
             </p>
 
             {/*

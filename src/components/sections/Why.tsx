@@ -11,7 +11,7 @@ const props = [
   },
   {
     icon: 'shield-check',
-    title: 'Enterprise-grade quality, accessible price',
+    title: 'Big-agency quality, honest prices',
     body: 'The polish and rigor of a big agency — without the bloated process or the price tag.',
   },
   {
@@ -76,7 +76,7 @@ export function Why() {
             <div className="mb-[24px]">
               <Eyebrow>Why Rozalix</Eyebrow>
               <h2 className="mt-[14px] mb-[18px] text-[40px]">
-                A studio that ships serious work.
+                Everything we build is made to grow your business.
               </h2>
             </div>
 
