@@ -97,8 +97,8 @@ export function Stats() {
           "
         >
           {/* Cell 1: lead with the affordable starting price */}
-          <StaticStat label="Starter websites" delay={0}>
-            <span style={{ fontSize: '0.5em', fontWeight: 600 }}>From </span>₱15k
+          <StaticStat label="Starting price" delay={0}>
+            ₱15k
           </StaticStat>
 
           {/* Cell 2: static "Free" — affordable + free to start, one-two punch */}

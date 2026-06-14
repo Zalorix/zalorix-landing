@@ -51,6 +51,11 @@
   --nav-h: 68px;
 }
 
+/* Tighter side padding (nav + body) on small screens */
+@media (max-width: 560px) {
+  :root { --gutter: 20px; }
+}
+
 /* Base reset — placed in @layer base so Tailwind utility classes
    (text-white, text-slate-600, …) override these element defaults.
    Unlayered rules would otherwise beat every @layer utility, which is
