@@ -86,9 +86,8 @@ export function Hero() {
                   href="#contact"
                   className="group max-[560px]:flex-1 max-[560px]:px-[10px] max-[560px]:py-[11px] max-[560px]:text-[15px]"
                 >
-                  Book{' '}
-                  <span className="max-[560px]:hidden">a free&nbsp;</span>
-                  consultation{' '}
+                  <span className="max-[560px]:hidden">Book a consultation</span>
+                  <span className="hidden max-[560px]:inline">Book consultation</span>
                   <ArrowRight
                     strokeWidth={1.75}
                     className="arr max-[560px]:hidden transition-transform duration-150 group-hover:translate-x-[3px]"
