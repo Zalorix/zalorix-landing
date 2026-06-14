@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" width="1080" height="1080">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0B1120"/>
+      <stop offset="0.55" stop-color="#0F172A"/>
+      <stop offset="1" stop-color="#312E81"/>
+    </linearGradient>
+    <radialGradient id="glowA" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#818CF8" stop-opacity="0.40"/>
+      <stop offset="0.7" stop-color="#818CF8" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowB" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#4F46E5" stop-opacity="0.38"/>
+      <stop offset="0.72" stop-color="#4F46E5" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- background -->
+  <rect width="1080" height="1080" fill="url(#bg)"/>
+  <rect x="560" y="-260" width="820" height="820" fill="url(#glowA)"/>
+  <rect x="-300" y="640" width="820" height="820" fill="url(#glowB)"/>
+
+  <!-- logo lockup (stacked, centered) -->
+  <g transform="translate(496,104) scale(0.88)">
+    <rect width="100" height="100" rx="22" fill="#4F46E5"/>
+    <rect x="30.5" y="19.5" width="11" height="11" fill="#FFFFFF"/>
+    <rect x="30.5" y="45.5" width="11" height="11" fill="#FFFFFF"/>
+    <g fill="none" stroke="#FFFFFF" stroke-width="11" stroke-linecap="butt" stroke-linejoin="round" stroke-dasharray="18 7">
+      <path d="M36 25 V75"/>
+      <path d="M36 25 H50 a13 13 0 0 1 0 26 H36"/>
+    </g>
+    <path d="M50 51 L70 75" fill="none" stroke="#A5B4FC" stroke-width="11" stroke-linecap="butt" stroke-dasharray="18 7"/>
+  </g>
+  <text x="540" y="244" text-anchor="middle"
+    font-family="'Space Grotesk', 'Inter', sans-serif" font-size="36" font-weight="600"
+    letter-spacing="-0.7" fill="#FFFFFF">Rozalix</text>
+
+  <!-- eyebrow pill -->
+  <rect x="370" y="318" width="340" height="46" rx="23" fill="#FFFFFF" fill-opacity="0.06" stroke="#FFFFFF" stroke-opacity="0.14"/>
+  <text x="540" y="348" text-anchor="middle"
+    font-family="'Inter', sans-serif" font-size="17" font-weight="600"
+    letter-spacing="2.6" fill="#A5B4FC">NOW OPEN FOR PROJECTS</text>
+
+  <!-- headline -->
+  <text x="540" y="486" text-anchor="middle"
+    font-family="'Space Grotesk', 'Inter', sans-serif" font-size="62" font-weight="600"
+    letter-spacing="-1.4" fill="#FFFFFF">Websites that turn</text>
+  <text x="540" y="562" text-anchor="middle"
+    font-family="'Space Grotesk', 'Inter', sans-serif" font-size="62" font-weight="600"
+    letter-spacing="-1.4" fill="#FFFFFF">visitors into <tspan fill="#A5B4FC">customers.</tspan></text>
+
+  <!-- subline -->
+  <text x="540" y="664" text-anchor="middle"
+    font-family="'Inter', sans-serif" font-size="27" font-weight="500"
+    letter-spacing="-0.2" fill="#CBD5E1">Custom-built, mobile-first websites</text>
+  <text x="540" y="702" text-anchor="middle"
+    font-family="'Inter', sans-serif" font-size="27" font-weight="500"
+    letter-spacing="-0.2" fill="#CBD5E1">for businesses ready to grow.</text>
+
+  <!-- CTA pill -->
+  <rect x="346" y="822" width="388" height="68" rx="34" fill="#4F46E5"/>
+  <text x="540" y="865" text-anchor="middle"
+    font-family="'Inter', sans-serif" font-size="24" font-weight="600"
+    letter-spacing="-0.2" fill="#FFFFFF">Book a free consultation</text>
+</svg>

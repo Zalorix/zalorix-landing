@@ -8,7 +8,7 @@ export function Hero() {
   return (
     <header
       id="top"
-      className="relative overflow-hidden pt-[calc(var(--nav-h)+56px)] pb-[104px]"
+      className="relative overflow-hidden pt-[calc(var(--nav-h)+56px)] max-[560px]:pt-[calc(var(--nav-h)+20px)] pb-[104px]"
     >
       {/* Background decoration — matches .hero::before gradient blob */}
       <div
@@ -79,24 +79,26 @@ export function Hero() {
             </Reveal>
 
             <Reveal delay={270}>
-              <div className="mt-[36px] flex flex-wrap gap-[14px]">
+              <div className="mt-[36px] flex flex-wrap gap-[14px] max-[560px]:gap-0">
                 <Button
                   variant="primary"
                   size="lg"
                   href="#contact"
-                  className="group max-[560px]:flex-1"
+                  className="group max-[560px]:flex-1 max-[560px]:px-[10px] max-[560px]:py-[11px] max-[560px]:text-[15px]"
                 >
-                  Book a free consultation{' '}
+                  Book{' '}
+                  <span className="max-[560px]:hidden">a free&nbsp;</span>
+                  consultation{' '}
                   <ArrowRight
                     strokeWidth={1.75}
-                    className="arr transition-transform duration-150 group-hover:translate-x-[3px]"
+                    className="arr max-[560px]:hidden transition-transform duration-150 group-hover:translate-x-[3px]"
                   />
                 </Button>
                 <Button
                   variant="secondary"
                   size="lg"
                   href="#process"
-                  className="max-[560px]:flex-1"
+                  className="max-[560px]:flex-1 max-[560px]:px-[10px] max-[560px]:py-[11px] max-[560px]:text-[15px]"
                 >
                   See how we work
                 </Button>
@@ -110,7 +112,7 @@ export function Hero() {
                   className="mt-[2px] h-[16px] w-[16px] shrink-0 text-success"
                 />
                 <span className="text-slate-600">
-                  Typically launched in weeks, not months — fixed scope, clear timeline.
+                  Free consultation — no pressure, no obligation.
                 </span>
               </div>
             </Reveal>
@@ -220,12 +222,18 @@ export function Hero() {
                       </div>
                     </div>
                     <div
-                      className="h-[150px] rounded-[12px]"
+                      className="h-[150px] rounded-[12px] max-[560px]:hidden"
                       style={{ background: 'linear-gradient(150deg,#EEF2FF 0%,#C7D2FE 50%,#A5B4FC 100%)' }}
                     />
                   </div>
                 </div>
               </div>
+
+              {/* Soft veil — gently recedes the mockup so the chips read as foreground */}
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 rounded-[14px] bg-white/25"
+              />
 
               {/* Floating growth chips — fan in/out on scroll + gentle float */}
               <HeroChips />
