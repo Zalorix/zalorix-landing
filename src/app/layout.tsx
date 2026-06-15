@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next'
+import Script from 'next/script'
 import { fontVariables } from '@/lib/fonts'
 import { Nav } from '@/components/layout/Nav'
 import { Footer } from '@/components/layout/Footer'
@@ -25,6 +26,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Nav />
         {children}
         <Footer />
+        {/* Rozalix AI chat widget — loads from the dashboard app. */}
+        <Script
+          src="https://app.rozalix.com/embed.js"
+          data-rozalix-key="rozalix-landing"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   )
